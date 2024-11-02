@@ -9,3 +9,5 @@ Route: Maps incoming requests to specific controller functions based on URL path
 Service: Contains reusable business logic that can be used by controllers or other services.
 
 Middleware: Processes requests/responses before they reach the final route handler, often for tasks like authentication or logging.
+
+A proxy is an intermediary server that routes requests between a client and a target server.
