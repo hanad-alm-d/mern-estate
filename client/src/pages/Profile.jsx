@@ -51,7 +51,6 @@ export default function Profile() {
   console.log(formData);
 
   const handleDeleteUser = async () => {
-    /*
     try {
       dispatch(deleteUserStart());
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
@@ -66,7 +65,6 @@ export default function Profile() {
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
-    */
   };
 
   const handleSignOut = async () => {
