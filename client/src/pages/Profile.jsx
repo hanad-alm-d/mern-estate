@@ -68,7 +68,6 @@ export default function Profile() {
   };
 
   const handleSignOut = async () => {
-    /*
     try {
       dispatch(signOutUserStart());
       const res = await fetch("/api/auth/signout");
@@ -81,7 +80,6 @@ export default function Profile() {
     } catch (error) {
       dispatch(deleteUserFailure(data.message));
     }
-    */
   };
 
   const handleShowListings = async () => {
