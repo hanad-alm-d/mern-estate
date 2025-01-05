@@ -12,6 +12,7 @@ export const createListing = async (req, res, next) => {
 
 export const getListing = async (req, res, next) => {
   try {
+    // console.log("Request params:", req.params);
     const listing = await Listing.findById(req.params.id);
     if (!listing) {
       return next(errorHandler(404, "Listing not found!"));
