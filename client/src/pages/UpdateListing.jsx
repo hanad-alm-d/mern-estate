@@ -7,7 +7,7 @@ export default function UpdateListing() {
     name: "",
     description: "",
     address: "",
-    type: "sale", // default type, sale or rent
+    type: "", // default type, sale or rent
     parking: false,
     furnished: false,
     offer: false,
@@ -62,11 +62,34 @@ export default function UpdateListing() {
 
   // Handle changes in the form fields
   const handleChange = (e) => {
-    const { id, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [id]: type === "checkbox" ? checked : value,
-    });
+    if (e.target.id === "sale" || e.target.id === "rent") {
+      setFormData({
+        ...formData,
+        type: e.target.id,
+      });
+    }
+
+    if (
+      e.target.id === "parking" ||
+      e.target.id === "furnished" ||
+      e.target.id === "offer"
+    ) {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.checked,
+      });
+    }
+
+    if (
+      e.target.type === "number" ||
+      e.target.type === "text" ||
+      e.target.type === "textarea"
+    ) {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    }
   };
 
   // Handle form submission for updating the listing
@@ -91,11 +114,10 @@ export default function UpdateListing() {
       const data = await res.json();
       setLoading(false);
 
-      if (data.success) {
-        navigate(`/listing/${listingId}`);
-        return;
-      } else {
+      if (data.successn === false) {
         setError(data.message);
+      } else {
+        navigate(`/listing/${listingId}`);
       }
     } catch (err) {
       setLoading(false);
