@@ -100,8 +100,13 @@ export default function CreateListing() {
             id="name"
             maxLength="62"
             minLength="10"
+            pattern="^[^\s]*$"
             required
             onChange={handleChange}
+            onInvalid={(e) =>
+              e.target.setCustomValidity("Spaces are not allowed in the name")
+            }
+            onInput={(e) => e.target.setCustomValidity("")}
             value={formData.name}
           />
           <textarea
