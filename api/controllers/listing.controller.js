@@ -25,6 +25,7 @@ export const getListing = async (req, res, next) => {
 
 export const getListings = async (req, res, next) => {
   try {
+    console.log("Query parameters received:", req.query);
     const limit = parseInt(req.query.limit) || 9;
     const startIndex = parseInt(req.query.startIndex) || 0;
     let offer = req.query.offer;
@@ -51,8 +52,10 @@ export const getListings = async (req, res, next) => {
       type = { $in: ["sale", "rent"] };
     }
 
-    const searchTerm = req.query.searchTerm || "";
-
+    let searchTerm = req.query.searchTerm
+      ? decodeURIComponent(req.query.searchTerm).trim()
+      : "";
+    console.log("Decoded searchTerm:", searchTerm);
     const sort = req.query.sort || "createdAt";
 
     const order = req.query.order || "desc";
